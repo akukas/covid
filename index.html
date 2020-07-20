@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<title>COVID slučajevi u Hrvatskoj</title>
+<script>
+    fetch("/api/").then(r => r.json()).then(data => {
+        let {SlucajeviHrvatska, UmrliHrvatska, IzlijeceniHrvatska} = data[0];
+        document.getElementById("broj_aktivnih").innerHTML = SlucajeviHrvatska - UmrliHrvatska - IzlijeceniHrvatska;
+    });
+</script>
+<h1><span id="broj_aktivnih"></span> aktivnih slučajeva</h1>
