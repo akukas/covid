@@ -1,1 +1,2 @@
-/api/	https://www.koronavirus.hr/json/?action=podaci	200
+/ /hr/ 302
+/api/ https://www.koronavirus.hr/json/?action=podaci 200
