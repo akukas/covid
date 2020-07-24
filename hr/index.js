@@ -1,12 +1,23 @@
 
 fetch("/api/").then(r => r.json()).then(data => {
-    // Sort data points from earliest to latest
+    // Sort entries from earliest to latest
     data.sort((a, b) => Date.parse(a.Datum) - Date.parse(b.Datum));
-    let dates = data.map(e => e.Datum.slice(0, 10));
-    let cases = data.map(e => e.SlucajeviHrvatska);
-    let deaths = data.map(e => e.UmrliHrvatska);
-    let recoveries = data.map(e => e.IzlijeceniHrvatska);
-    let active = data.map(e => e.SlucajeviHrvatska - e.UmrliHrvatska - e.IzlijeceniHrvatska);
+    let filtered_data = [];
+    for (let entry of data) {
+        // Only interested in the date, not time of reporting
+        entry.Datum = entry.Datum.slice(0, 10);
+        // If there are mutliple entries for the same date, use the latest one
+        let previous = filtered_data.pop();
+        if (previous && previous.Datum !== entry.Datum) {
+            filtered_data.push(previous);
+        }
+        filtered_data.push(entry);
+    }
+    let dates = filtered_data.map(e => e.Datum);
+    let cases = filtered_data.map(e => e.SlucajeviHrvatska);
+    let deaths = filtered_data.map(e => e.UmrliHrvatska);
+    let recoveries = filtered_data.map(e => e.IzlijeceniHrvatska);
+    let active = filtered_data.map(e => e.SlucajeviHrvatska - e.UmrliHrvatska - e.IzlijeceniHrvatska);
     let chart = new Chart(document.getElementById("chart").getContext("2d"), {
         type: "line",
         data: {
