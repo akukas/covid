@@ -47,6 +47,11 @@ fetch("/api/").then(r => r.json()).then(data => {
         options: {
             tooltips: {
                 mode: "index"
+            },
+            scales: {
+                xAxes: [{
+                    type: "time"
+                }]
             }
         }
     });
