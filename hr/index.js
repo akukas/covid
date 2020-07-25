@@ -22,9 +22,10 @@ fetch("/api/").then(r => r.json()).then(data => {
     // Show latest active case count, and the change from the previous day.
     let active_cases = active[active.length - 1];
     document.querySelector("header").innerHTML = `Aktivnih slučajeva: ${active_cases}`;
-    let active_change = active_cases - active[active.length - 2];
+    let active_cases_previous = active[active.length - 2];
+    let active_change = (active_cases - active_cases_previous) / active_cases_previous * 100;
     if (active_change) {
-        document.querySelector("header").innerHTML += ` (${active_change > 0 ? "+" : ""}${active_change})`;
+        document.querySelector("header").innerHTML += ` (${active_change > 0 ? "+" : ""}${active_change.toFixed(2)}%)`;
     }
     // Draw the chart.
     let chart = new Chart(document.getElementById("chart").getContext("2d"), {
