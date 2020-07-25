@@ -18,6 +18,13 @@ fetch("/api/").then(r => r.json()).then(data => {
     let deaths = filtered_data.map(e => e.UmrliHrvatska);
     let recoveries = filtered_data.map(e => e.IzlijeceniHrvatska);
     let active = filtered_data.map(e => e.SlucajeviHrvatska - e.UmrliHrvatska - e.IzlijeceniHrvatska);
+    // Show latest active case count and the change from the previous day.
+    let active_cases = active[active.length - 1];
+    document.querySelector("header").innerHTML = `Aktivnih slučajeva: ${active_cases}`;
+    let active_change = active_cases - active[active.length - 2];
+    if (active_change) {
+        document.querySelector("header").innerHTML += ` (${active_change > 0 ? "+" : ""}${active_change})`;
+    }
     let chart = new Chart(document.getElementById("chart").getContext("2d"), {
         type: "line",
         data: {
