@@ -27,6 +27,7 @@ fetch("/api/").then(r => r.json()).then(data => {
     if (active_change) {
         document.querySelector("header").innerHTML += ` (${active_change > 0 ? "+" : ""}${active_change.toFixed(2)}%)`;
     }
+    document.querySelector("footer").classList.remove("hidden");
     // Draw the chart.
     let chart = new Chart(document.getElementById("chart").getContext("2d"), {
         type: "line",

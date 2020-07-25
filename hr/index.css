@@ -7,3 +7,11 @@ header {
     text-align: center;
     font-size: 4em;
 }
+
+footer {
+    text-align: right;
+}
+
+.hidden {
+    display: none;
+}
