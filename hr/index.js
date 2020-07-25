@@ -6,7 +6,7 @@ fetch("/api/").then(r => r.json()).then(data => {
     for (let entry of data) {
         // Only interested in the date, not time of reporting
         entry.Datum = entry.Datum.slice(0, 10);
-        // If there are mutliple entries for the same date, use the latest one
+        // If there are multiple entries for the same date, use the latest one
         let previous = filtered_data.pop();
         if (previous && previous.Datum !== entry.Datum) {
             filtered_data.push(previous);
