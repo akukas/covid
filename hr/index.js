@@ -28,7 +28,7 @@ fetch("/api/").then(r => r.json()).then(data => {
     }
     document.querySelector("footer").classList.remove("hidden");
     // Draw the chart.
-    let chart = new Chart(document.getElementById("chart").getContext("2d"), {
+    let chart = new Chart(document.querySelector("canvas").getContext("2d"), {
         type: "line",
         data: {
             labels: dates,
