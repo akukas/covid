@@ -1,4 +1,3 @@
-
 fetch("/api/").then(r => r.json()).then(data => {
     // Sort entries from earliest to latest.
     data.sort((a, b) => Date.parse(a.Datum) - Date.parse(b.Datum));
@@ -36,11 +35,13 @@ fetch("/api/").then(r => r.json()).then(data => {
             datasets: [{
                 label: "Slučajevi",
                 data: cases,
+                hidden: true,
                 borderColor: "#F70",
                 backgroundColor: "#FFF0"
             }, {
                 label: "Oporavljeni",
                 data: recoveries,
+                hidden: true,
                 borderColor: "#0A0",
                 backgroundColor: "#FFF0"
             }, {
