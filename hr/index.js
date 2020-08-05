@@ -45,15 +45,15 @@ fetch("/api/").then(r => r.json()).then(data => {
                 borderColor: "#0A0",
                 backgroundColor: "#FFF0"
             }, {
-                label: "Umrli",
-                data: deaths,
-                borderColor: "#000",
-                backgroundColor: "#FFF0"
-            }, {
                 label: "Aktivni",
                 data: active,
                 borderColor: "#F00",
                 backgroundColor: "#F005"
+            }, {
+                label: "Umrli",
+                data: deaths,
+                borderColor: "#000",
+                backgroundColor: "#FFF0"
             },]
         },
         options: {
